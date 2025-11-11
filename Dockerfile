@@ -6,7 +6,7 @@ RUN apk add --no-cache curl jq tar
 RUN export LITESTREAM_VERSION=$(curl --silent https://api.github.com/repos/benbjohnson/litestream/releases/latest | jq -r .tag_name) && curl -L https://github.com/benbjohnson/litestream/releases/download/${LITESTREAM_VERSION}/litestream-${LITESTREAM_VERSION#v}-linux-x86_64.tar.gz -o litestream.tar.gz && tar xzvf litestream.tar.gz
 
 # Main image
-FROM docker.io/louislam/uptime-kuma as KUMA
+FROM docker.io/louislam/uptime-kuma:2.0.2 as KUMA
 
 ARG UPTIME_KUMA_PORT=3001
 WORKDIR /app
